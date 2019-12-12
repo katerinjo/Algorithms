@@ -5,8 +5,13 @@ import sys
 # The cache parameter is here for if you want to implement
 # a solution that is more efficient than the naive 
 # recursive solution
-def eating_cookies(n, cache=None):
-  pass
+def eating_cookies(n, cache={0: 1, 1: 1, 2: 2, 3: 4}):
+  if n in cache:
+    print(n)
+    return cache[n]
+
+  cache[n] = sum(eating_cookies(n - simultaneous) for simultaneous in [1, 2, 3])
+  return cache[n]
 
 if __name__ == "__main__":
   if len(sys.argv) > 1:
